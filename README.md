@@ -29,24 +29,23 @@ The training split was further balanced via random oversampling (minority-class 
 ├── notebooks/
 │   └── Act4_Group9_BayogosMolinaJaso.ipynb    <- main consolidated notebook (all 3 variants)
 ├── results/
-│   ├── bert/
-│   │   ├── bert_results.json                  <- final test metrics
-│   │   ├── bert_test_predictions.csv          <- per-sentence predictions
-│   │   └── confusion_matrix.png
-│   ├── gpt/
-│   │   ├── gpt_results.json                   <- baseline/final perplexity
-│   │   └── gpt_generations.csv                <- sample generations
-│   ├── gan/
-│   │   ├── gan_results.json                   <- BLEU scores, discriminator accuracy
-│   │   ├── gan_samples.csv                    <- generated synthetic sentences
-│   │   └── gan_training_history.csv           <- per-epoch G/D loss and accuracy
-│   └── comparison/
-│       ├── comparison_table.csv               <- cross-model metric summary
-│       ├── master_summary.json                <- consolidated results bundle
-│       ├── analysis.txt                       <- generated comparative analysis
-│       └── native_metrics_comparison.png
-└── docs/
-    └── assignment_instructions.pdf
+   ├── bert/
+   │   ├── bert_results.json                  <- final test metrics
+   │   ├── bert_test_predictions.csv          <- per-sentence predictions
+   │   └── confusion_matrix.png
+   ├── gpt/
+   │   ├── gpt_results.json                   <- baseline/final perplexity
+   │   └── gpt_generations.csv                <- sample generations
+   ├── gan/
+   │   ├── gan_results.json                   <- BLEU scores, discriminator accuracy
+   │   ├── gan_samples.csv                    <- generated synthetic sentences
+   │   └── gan_training_history.csv           <- per-epoch G/D loss and accuracy
+   └── comparison/
+       ├── comparison_table.csv               <- cross-model metric summary
+       ├── master_summary.json                <- consolidated results bundle
+       ├── analysis.txt                       <- generated comparative analysis
+       └── native_metrics_comparison.png
+
 ```
 
 ---
