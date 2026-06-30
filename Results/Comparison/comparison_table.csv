@@ -1,0 +1,12 @@
+Aspect,BERT,GPT,Text-GAN
+Architecture family,Encoder-only Transformer,Decoder-only Transformer,CNN-GRU adversarial network
+Base model,bert-base-uncased,distilgpt2,Custom (from scratch)
+Task,Sentiment classification,Causal language generation,Adversarial text generation
+Training paradigm,Supervised fine-tuning,Self-supervised fine-tuning,Adversarial training
+Headline metric,Macro-F1,Perplexity (lower is better),BLEU-2
+Score,0.8384,28.32,0.0900
+Secondary metric,Accuracy,Improvement factor over baseline,Final D total accuracy
+Secondary score,0.8515,4.70x lower,0.9999
+Training data used,"5,556 balanced (oversampled) sentences","~4,361 sentences (full corpus split 90/10)","4,846 sentences (full corpus)"
+Training time,~3.8 minutes,~3.3 minutes,~2.0 minutes
+Total parameters,109M,82M,~1.3M

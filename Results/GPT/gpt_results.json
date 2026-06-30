@@ -1,0 +1,19 @@
+{
+  "model": "distilbert/distilgpt2",
+  "variant": "GPT",
+  "task": "causal_language_modeling",
+  "baseline_perplexity": 133.00453741748927,
+  "final_perplexity": 28.317976060148915,
+  "baseline_loss": 4.890383243560791,
+  "final_loss": 3.343496799468994,
+  "improvement_factor": 4.696823570123106,
+  "improvement_pct": 78.70901503814014,
+  "hyperparameters": {
+    "epochs": 5,
+    "batch_size": 8,
+    "learning_rate": 5e-05,
+    "max_length": 64,
+    "weight_decay": 0.01,
+    "warmup_steps": 100
+  }
+}

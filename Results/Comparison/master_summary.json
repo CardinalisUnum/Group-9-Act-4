@@ -1,0 +1,44 @@
+{
+  "project_name": "Act 4 \u2014 Multi-Variant Text Analysis and Generation",
+  "dataset": "Financial PhraseBank (atrost/financial_phrasebank)",
+  "domain": "Finance",
+  "total_corpus_sentences": 4846,
+  "variants": {
+    "BERT": {
+      "family": "Encoder Transformer",
+      "base_model": "bert-base-uncased",
+      "task": "Sentiment classification (3-class)",
+      "test_accuracy": 0.8515463917525773,
+      "test_f1_macro": 0.8384218640365982,
+      "test_precision": 0.8299643119840902,
+      "test_recall": 0.8496148335440371
+    },
+    "GPT": {
+      "family": "Decoder Transformer",
+      "base_model": "distilbert/distilgpt2",
+      "task": "Causal language generation",
+      "baseline_perplexity": 133.00453741748927,
+      "final_perplexity": 28.317976060148915,
+      "improvement_factor": 4.696823570123106,
+      "improvement_pct": 78.70901503814014
+    },
+    "Text-GAN": {
+      "family": "CNN-GRU Adversarial",
+      "base_model": "Custom from-scratch",
+      "task": "Adversarial text generation",
+      "bleu_2": 0.09000250577434281,
+      "bleu_4": 0.0022811457420925706,
+      "final_d_accuracy": 0.999896523178808,
+      "final_g_loss": 7.691238153849216,
+      "final_d_loss": 0.002035853367018211,
+      "outcome_note": "Discriminator dominance after epoch 4; mode collapse observed"
+    }
+  },
+  "key_findings": [
+    "BERT achieved the strongest task-specific performance (Macro-F1 0.838) due to supervised stability.",
+    "GPT reduced perplexity 4.7x from baseline, demonstrating effective domain adaptation.",
+    "Text-GAN exhibited Discriminator dominance and mode collapse \u2014 a documented failure mode for small-corpus text GANs.",
+    "All three models trained in under 5 minutes each on a T4 GPU.",
+    "The three paradigms (encoding, generation, adversarial) have meaningfully different stability profiles."
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "model": "Custom CNN-GRU Text-GAN",
+  "variant": "Text-GAN",
+  "task": "adversarial_text_generation",
+  "bleu_2": 0.09000250577434281,
+  "bleu_4": 0.0022811457420925706,
+  "final_d_accuracy": 0.999896523178808,
+  "final_d_acc_real": 1.0,
+  "final_d_acc_fake": 0.9997930463576159,
+  "final_g_loss": 7.691238153849216,
+  "final_d_loss": 0.002035853367018211,
+  "hyperparameters": {
+    "max_length": 30,
+    "vocab_size": 5000,
+    "embed_dim": 64,
+    "hidden_dim": 128,
+    "latent_dim": 32,
+    "batch_size": 32,
+    "epochs": 30,
+    "lr_g": 0.0001,
+    "lr_d": 0.0001,
+    "gumbel_tau_start": 1.0,
+    "gumbel_tau_min": 0.5
+  }
+}

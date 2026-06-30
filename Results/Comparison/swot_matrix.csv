@@ -1,0 +1,5 @@
+Aspect,BERT,GPT,Text-GAN
+Strengths,"Bidirectional context, fast fine-tuning, stable convergence, interpretable per-class outputs","Coherent generation, learns domain style, prompt-controllable, stable training",Unconditional generation from noise; no labels needed; conceptually flexible
+Weaknesses,Cannot generate text; sensitive to class imbalance without oversampling; needs labels,Hallucinates facts; output quality scales with corpus size; can't evaluate inputs,Highly unstable on small corpora; mode collapse and D-dominance common; from-scratch vocab limits quality
+Best use case,"Text classification, NER, semantic similarity, sentiment analysis","Text generation, completion, prompt-controlled drafting, domain adaptation","Unconditional adversarial sampling, augmentation for downstream tasks"
+Worst use case,"Open-ended generation, dialog, creative writing","Classification tasks, exact factual lookup, deterministic outputs",Reliable text generation; production deployments; small corpora

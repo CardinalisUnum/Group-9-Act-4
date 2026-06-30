@@ -1,0 +1,18 @@
+{
+  "model": "bert-base-uncased",
+  "variant": "BERT",
+  "task": "sentiment_classification",
+  "test_accuracy": 0.8515463917525773,
+  "test_f1_macro": 0.8384218640365982,
+  "test_precision": 0.8299643119840902,
+  "test_recall": 0.8496148335440371,
+  "test_loss": 0.7968223690986633,
+  "hyperparameters": {
+    "epochs": 4,
+    "batch_size": 16,
+    "learning_rate": 2e-05,
+    "max_length": 128,
+    "weight_decay": 0.01,
+    "warmup_steps": 100
+  }
+}

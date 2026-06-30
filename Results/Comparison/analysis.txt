@@ -1,0 +1,88 @@
+
+===========================================================================
+   CROSS-MODEL ANALYSIS — Report-Ready Text
+===========================================================================
+
+1. ARCHITECTURAL COMPARISON
+---------------------------------------------------------------------------
+BERT is an encoder-only Transformer that uses BIDIRECTIONAL self-attention,
+meaning each token can attend to all other tokens in the sequence. This
+makes BERT excellent at understanding tasks (classification, NER) but
+fundamentally incapable of left-to-right generation.
+
+GPT (DistilGPT-2) is a decoder-only Transformer with MASKED (causal)
+self-attention — each token can only attend to previous tokens. This
+constraint enables generation by autoregressive token-by-token sampling.
+
+Text-GAN uses a fundamentally different paradigm: two competing networks
+(Generator: GRU + linear, Discriminator: 1D-CNN with multi-kernel filters)
+trained adversarially. It does not use the Transformer architecture and
+starts from scratch with a custom vocabulary.
+
+2. TRAINING PARADIGM DIFFERENCES
+---------------------------------------------------------------------------
+BERT uses SUPERVISED fine-tuning: each training example has an explicit
+label. The model learns by minimizing classification loss against ground
+truth. Stable, well-understood, and produced the best results in this study
+(Macro-F1 = 0.8384).
+
+GPT uses SELF-SUPERVISED fine-tuning: the data is its own label. The model
+learns to predict each next token from previous ones. Also stable, with
+monotonically decreasing loss. Achieved a 4.70x perplexity reduction
+from baseline (133.0 -> 28.3).
+
+Text-GAN uses ADVERSARIAL training: the Generator and Discriminator have
+competing objectives. This is fundamentally less stable. In our experiment,
+the Discriminator dominated the Generator after epoch 4, achieving 100%
+accuracy and depriving G of useful gradient signal — a textbook failure
+mode known as 'Discriminator dominance' that often co-occurs with 'mode
+collapse' in the Generator's outputs.
+
+3. PERFORMANCE LIMITS OBSERVED
+---------------------------------------------------------------------------
+BERT: Per-class F1 reveals the model is weakest on the smallest class.
+Even with oversampling, the model's Positive recall (0.77) trails Negative
+recall (0.90) and Neutral recall (0.88). This suggests Positive sentiment
+is the harder signal to learn in financial news — possibly because positive
+language often overlaps with neutral reporting.
+
+GPT: Mild overfitting appeared after epoch 4 (validation loss began rising
+from 3.343 to 3.352 while training loss continued falling). The best-model
+auto-loading mechanism correctly preserved the epoch-4 checkpoint. The
+model also hallucinates specific entities (fictional CEO names, fabricated
+company combinations) — a known limitation of small-corpus generation.
+
+Text-GAN: Collapsed into Discriminator dominance starting epoch 4. By
+epoch 30, D total accuracy was 0.9999 (essentially perfect),
+while G_loss climbed from 1.47 to 7.69, indicating G could not
+find a path to improve. Final BLEU-2 = 0.0900, BLEU-4 = 0.0023.
+
+4. BEHAVIORAL DIFFERENCES
+---------------------------------------------------------------------------
+BERT produces a structured 3-class probability distribution per input.
+It cannot generate text. It is interpretable: per-class confidence is
+directly readable.
+
+GPT produces coherent, grammatically correct continuations with authentic
+financial vocabulary (EUR, profit, net sales, operating period). It can
+be conditioned on any prompt for controlled generation, but cannot
+classify or evaluate sentiment.
+
+Text-GAN, when trained successfully, would generate unconditional samples
+from noise without any prompt. In our experiment, the collapsed Generator
+produced repetitive, low-coherence sequences dominated by rare tokens —
+the visible signature of mode collapse.
+
+5. CONCLUSION
+---------------------------------------------------------------------------
+This comparative study confirms that the three NLP paradigms — discriminative
+representation (BERT), generative autoregression (GPT), and adversarial
+generation (GAN) — have meaningfully different stability profiles, output
+behaviors, and resource requirements. For domain-specific NLP tasks with
+limited labeled data, supervised fine-tuning of pretrained encoders (BERT)
+provides the most reliable performance. Self-supervised fine-tuning of
+pretrained decoders (GPT) is the natural choice for controlled text
+generation. Adversarial training for text remains technically challenging
+on small corpora and requires careful balancing — failures like the one
+observed here are documented and expected in the literature.
+===========================================================================
