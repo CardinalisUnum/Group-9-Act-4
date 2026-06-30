@@ -3,7 +3,6 @@
 **Group 9** — Ira Louise Bayogos, Louis Patrick Jaso, & Patrick Lawrence Molina
 **Dataset:** Financial PhraseBank (Malo et al., 2014)
 
-> Full prose version with figures: [`ANALYTICAL_DISCUSSION.docx`](./ANALYTICAL_DISCUSSION.docx)
 
 ---
 
